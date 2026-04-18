@@ -1,0 +1,320 @@
+/* ============================================================
+   Noshkār — نشخوار
+   Landing page styles
+   ------------------------------------------------------------
+   Palette, typography, and motion derived from the Noshkār
+   brand system. Earth tones, ample whitespace, slow motion.
+   ============================================================ */
+
+:root {
+  /* brand tokens */
+  --noshkar-olive:  #6B7A4B;
+  --noshkar-olive-2:#4A5A30;
+  --noshkar-sage:   #96A671;
+  --noshkar-beige:  #E8DFC9;
+  --noshkar-paper:  #F5F1E6;
+  --noshkar-navy:   #2C3A4E;
+  --noshkar-ink:    #1A1A1A;
+  --noshkar-muted:  #9B9B93;
+
+  /* semantic surfaces */
+  --bg:       var(--noshkar-paper);
+  --bg-alt:   var(--noshkar-beige);
+  --fg:       var(--noshkar-navy);
+  --fg-soft:  color-mix(in srgb, var(--noshkar-navy) 72%, transparent);
+  --fg-faint: color-mix(in srgb, var(--noshkar-navy) 48%, transparent);
+  --accent:   var(--noshkar-olive);
+  --rule:     color-mix(in srgb, var(--noshkar-navy) 18%, transparent);
+
+  /* type scale */
+  --font-fa:  'Vazirmatn', 'Noto Naskh Arabic', system-ui, sans-serif;
+  --font-en:  'Inter', system-ui, -apple-system, sans-serif;
+  --font-mo:  'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
+
+  --text-xs:  0.75rem;
+  --text-sm:  0.875rem;
+  --text-base:1rem;
+  --text-md:  1.125rem;
+  --text-lg:  1.375rem;
+  --text-xl:  2rem;
+
+  /* rhythm */
+  --space-1:  0.25rem;
+  --space-2:  0.5rem;
+  --space-3:  0.75rem;
+  --space-4:  1rem;
+  --space-6:  1.5rem;
+  --space-8:  2rem;
+  --space-12: 3rem;
+  --space-16: 4rem;
+  --space-24: 6rem;
+
+  /* motion */
+  --ease-calm: cubic-bezier(0.4, 0.0, 0.2, 1);
+}
+
+/* ---------- reset ---------- */
+
+*, *::before, *::after { box-sizing: border-box; }
+
+html, body {
+  margin: 0;
+  padding: 0;
+  background: var(--bg);
+  color: var(--fg);
+  font-family: var(--font-en);
+  font-size: 16px;
+  line-height: 1.55;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+body {
+  min-height: 100vh;
+  display: grid;
+  grid-template-rows: 1fr auto;
+  position: relative;
+  overflow-x: hidden;
+}
+
+/* subtle paper grain — pure CSS, no asset */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  background-image:
+    radial-gradient(circle at 20% 30%, color-mix(in srgb, var(--noshkar-olive) 6%, transparent) 0, transparent 55%),
+    radial-gradient(circle at 80% 70%, color-mix(in srgb, var(--noshkar-navy) 4%, transparent) 0, transparent 60%);
+}
+
+a {
+  color: var(--accent);
+  text-decoration: none;
+  border-bottom: 1px solid color-mix(in srgb, var(--accent) 40%, transparent);
+  transition: border-color 200ms var(--ease-calm), color 200ms var(--ease-calm);
+}
+a:hover { color: var(--noshkar-olive-2); border-bottom-color: var(--noshkar-olive-2); }
+a:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+/* ---------- layout ---------- */
+
+main {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  align-content: center;
+  justify-items: start;
+  padding: clamp(var(--space-12), 10vh, var(--space-24)) clamp(var(--space-6), 6vw, var(--space-16));
+  max-width: 72rem;
+  margin: 0 auto;
+  width: 100%;
+}
+
+/* masthead: logo aligned to top-left */
+.masthead {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  margin-bottom: clamp(var(--space-12), 8vh, var(--space-16));
+}
+
+.masthead__mark {
+  width: 56px;
+  height: 56px;
+  display: block;
+  animation: breathe 9s ease-in-out infinite;
+  transform-origin: center;
+  filter: drop-shadow(0 1px 0 rgba(0,0,0,0.02));
+}
+
+.masthead__label {
+  font-family: var(--font-mo);
+  font-size: var(--text-xs);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--fg-faint);
+}
+
+/* hero block — asymmetric, Persian-led */
+.hero {
+  display: grid;
+  gap: var(--space-6);
+  max-width: 44rem;
+}
+
+.hero__persian {
+  font-family: var(--font-fa);
+  font-weight: 500;
+  font-size: clamp(4rem, 12vw, 9rem);
+  line-height: 1.0;
+  letter-spacing: -0.01em;
+  color: var(--noshkar-navy);
+  margin: 0;
+  direction: rtl;
+  /* per visual-identity: breathe the word */
+  padding-inline-end: 0.05em;
+}
+
+.hero__roman {
+  font-family: var(--font-en);
+  font-weight: 400;
+  font-size: var(--text-md);
+  color: var(--fg-soft);
+  letter-spacing: 0.02em;
+  margin: 0;
+}
+
+.hero__roman em {
+  font-style: normal;
+  color: var(--accent);
+}
+
+.hero__tagline {
+  font-family: var(--font-en);
+  font-weight: 500;
+  font-size: clamp(var(--text-lg), 2.6vw, var(--text-xl));
+  line-height: 1.25;
+  color: var(--noshkar-navy);
+  margin: var(--space-4) 0 0;
+  max-width: 28ch;
+}
+
+.hero__desc {
+  font-family: var(--font-en);
+  font-weight: 400;
+  font-size: var(--text-md);
+  color: var(--fg-soft);
+  margin: 0;
+  max-width: 52ch;
+}
+
+/* small metadata line — feels like a console annotation */
+.hero__meta {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  margin-top: var(--space-8);
+  font-family: var(--font-mo);
+  font-size: var(--text-xs);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--fg-faint);
+}
+
+.hero__meta-dot {
+  display: inline-block;
+  width: 6px; height: 6px; border-radius: 50%;
+  background: var(--accent);
+  box-shadow: 0 0 0 0 color-mix(in srgb, var(--accent) 50%, transparent);
+  animation: pulse 3.2s ease-in-out infinite;
+}
+
+/* a slow, hand-drawn style ripple line — ties to waveform motif */
+.ripple {
+  margin-top: clamp(var(--space-12), 8vh, var(--space-16));
+  width: min(100%, 36rem);
+  height: 24px;
+  opacity: 0.55;
+  color: var(--accent);
+}
+.ripple svg { width: 100%; height: 100%; display: block; }
+.ripple path {
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.25;
+  stroke-linecap: round;
+  stroke-dasharray: 2 1000;
+  stroke-dashoffset: 0;
+  animation: ripple-draw 14s ease-in-out infinite;
+}
+
+/* ---------- footer ---------- */
+
+footer {
+  position: relative;
+  z-index: 1;
+  padding: var(--space-8) clamp(var(--space-6), 6vw, var(--space-16));
+  max-width: 72rem;
+  margin: 0 auto;
+  width: 100%;
+  border-top: 1px solid var(--rule);
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: var(--space-4);
+  font-family: var(--font-mo);
+  font-size: var(--text-xs);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--fg-faint);
+}
+
+footer a {
+  color: var(--fg-soft);
+  border-bottom-color: color-mix(in srgb, var(--fg-soft) 30%, transparent);
+}
+
+footer a:hover {
+  color: var(--accent);
+  border-bottom-color: var(--accent);
+}
+
+.credits {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-4);
+  align-items: baseline;
+}
+
+.credits__sep {
+  opacity: 0.4;
+  user-select: none;
+}
+
+/* ---------- motion ---------- */
+
+@keyframes breathe {
+  0%, 100% { transform: scale(1.000); }
+  50%      { transform: scale(1.025); }
+}
+
+@keyframes pulse {
+  0%, 100% { box-shadow: 0 0 0 0 color-mix(in srgb, var(--accent) 50%, transparent); }
+  50%      { box-shadow: 0 0 0 6px color-mix(in srgb, var(--accent) 0%, transparent); }
+}
+
+@keyframes ripple-draw {
+  0%   { stroke-dasharray: 2 1000; stroke-dashoffset: 0; opacity: 0.0; }
+  10%  { opacity: 0.55; }
+  50%  { stroke-dasharray: 1000 2; stroke-dashoffset: -400; opacity: 0.55; }
+  90%  { opacity: 0.55; }
+  100% { stroke-dasharray: 2 1000; stroke-dashoffset: -800; opacity: 0.0; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .masthead__mark,
+  .hero__meta-dot,
+  .ripple path { animation: none; }
+}
+
+/* ---------- responsive ---------- */
+
+@media (max-width: 640px) {
+  .masthead { margin-bottom: var(--space-8); }
+  .masthead__mark { width: 44px; height: 44px; }
+  .hero { gap: var(--space-4); }
+  .hero__meta { margin-top: var(--space-6); }
+  footer {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--space-2);
+  }
+}
