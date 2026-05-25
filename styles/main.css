@@ -136,6 +136,19 @@ main {
   filter: drop-shadow(0 1px 0 rgba(0,0,0,0.02));
 }
 
+.masthead__brand {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-3);
+  color: inherit;
+  border-bottom: 0;
+}
+
+.masthead__brand:hover {
+  color: inherit;
+  border-bottom-color: transparent;
+}
+
 .masthead__label {
   font-family: var(--font-mo);
   font-size: var(--text-xs);
@@ -248,6 +261,45 @@ main {
   background: color-mix(in srgb, var(--noshkar-sage) 24%, var(--bg));
 }
 
+/* ---------- home album teaser ---------- */
+
+.album-teaser {
+  width: 100%;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(12rem, 18rem);
+  gap: clamp(var(--space-8), 6vw, var(--space-16));
+  align-items: center;
+  padding-top: clamp(var(--space-12), 9vh, var(--space-24));
+  border-top: 1px solid var(--rule);
+}
+
+.album-teaser h2 {
+  margin: 0;
+  font-size: var(--text-2xl);
+  line-height: 1.05;
+}
+
+.album-teaser p:not(.section-kicker) {
+  max-width: 34rem;
+  margin: var(--space-4) 0 var(--space-8);
+  color: var(--fg-soft);
+  font-size: var(--text-md);
+}
+
+.album-teaser__art {
+  display: block;
+  border-bottom: 0;
+}
+
+.album-teaser__art img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 1;
+  object-fit: cover;
+  border: 1px solid color-mix(in srgb, var(--noshkar-navy) 14%, transparent);
+  box-shadow: 0 24px 50px rgba(44, 58, 78, 0.14);
+}
+
 /* ---------- album ---------- */
 
 .album {
@@ -278,6 +330,7 @@ main {
   color: var(--accent);
 }
 
+.album h1,
 .album h2 {
   margin: 0;
   font-family: var(--font-en);
@@ -368,12 +421,32 @@ main {
   padding: 0;
 }
 
+.track-grid > li {
+  min-width: 0;
+}
+
 .track-card {
   display: grid;
   grid-template-rows: auto 1fr;
   min-width: 0;
   background: color-mix(in srgb, var(--bg) 84%, var(--noshkar-beige));
   border: 1px solid color-mix(in srgb, var(--noshkar-navy) 14%, transparent);
+}
+
+.track-card--link {
+  height: 100%;
+  color: inherit;
+  border-bottom: 1px solid color-mix(in srgb, var(--noshkar-navy) 14%, transparent);
+  transition:
+    border-color 200ms var(--ease-calm),
+    transform 200ms var(--ease-calm),
+    background 200ms var(--ease-calm);
+}
+
+.track-card--link:hover {
+  color: inherit;
+  border-color: color-mix(in srgb, var(--accent) 44%, transparent);
+  transform: translateY(-2px);
 }
 
 .track-card img {
@@ -396,7 +469,7 @@ main {
   color: var(--fg-faint);
 }
 
-.track-card h3 {
+.track-card__title {
   margin: var(--space-2) 0 0;
   font-size: var(--text-lg);
   line-height: 1.15;
@@ -404,7 +477,7 @@ main {
   color: var(--noshkar-navy);
 }
 
-.track-card p {
+.track-card__persian {
   margin: 0;
   font-family: var(--font-fa);
   font-size: var(--text-lg);
@@ -412,7 +485,7 @@ main {
   color: var(--accent);
 }
 
-.track-card__body > span:not(.track-card__number) {
+.track-card__english {
   color: var(--fg-soft);
 }
 
@@ -433,6 +506,88 @@ main {
 
 .track-card--closer {
   background: color-mix(in srgb, var(--noshkar-navy) 8%, var(--bg));
+}
+
+/* ---------- song pages ---------- */
+
+.song-page {
+  width: 100%;
+  display: grid;
+  grid-template-columns: minmax(14rem, 24rem) minmax(0, 1fr);
+  column-gap: clamp(var(--space-8), 7vw, var(--space-16));
+  row-gap: var(--space-12);
+  align-items: start;
+}
+
+.song-page__art {
+  grid-row: span 2;
+}
+
+.song-page__art img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 1;
+  object-fit: cover;
+  border: 1px solid color-mix(in srgb, var(--noshkar-navy) 14%, transparent);
+  box-shadow: 0 24px 50px rgba(44, 58, 78, 0.14);
+}
+
+.song-page__header h1 {
+  margin: 0;
+  font-size: var(--text-2xl);
+  line-height: 1.05;
+}
+
+.song-page__persian {
+  margin: var(--space-4) 0 0;
+  font-family: var(--font-fa);
+  font-size: var(--text-xl);
+  line-height: 1.2;
+  color: var(--accent);
+}
+
+.song-page__english {
+  margin: var(--space-2) 0 0;
+  color: var(--fg-soft);
+  font-size: var(--text-md);
+}
+
+.lyrics {
+  grid-column: 2;
+  max-width: 42rem;
+}
+
+.lyrics h2 {
+  margin: 0 0 var(--space-8);
+  font-size: var(--text-md);
+  font-family: var(--font-mo);
+  font-weight: 500;
+  letter-spacing: 0;
+  text-transform: uppercase;
+  color: var(--fg-faint);
+}
+
+.poem {
+  font-family: var(--font-fa);
+  font-size: var(--text-lg);
+  line-height: 2;
+  color: var(--noshkar-navy);
+}
+
+.poem p {
+  margin: 0 0 var(--space-8);
+}
+
+.song-nav {
+  grid-column: 1 / -1;
+  display: flex;
+  justify-content: space-between;
+  gap: var(--space-4);
+  padding-top: var(--space-8);
+  border-top: 1px solid var(--rule);
+  font-family: var(--font-mo);
+  font-size: var(--text-xs);
+  text-transform: uppercase;
 }
 
 .hero__meta-dot {
@@ -506,6 +661,17 @@ footer a:hover {
   user-select: none;
 }
 
+.copyright-notice {
+  flex-basis: 100%;
+  display: grid;
+  gap: var(--space-2);
+  max-width: 56rem;
+  padding-top: var(--space-4);
+  border-top: 1px solid color-mix(in srgb, var(--noshkar-navy) 12%, transparent);
+  color: color-mix(in srgb, var(--noshkar-navy) 62%, transparent);
+  line-height: 1.5;
+}
+
 /* ---------- motion ---------- */
 
 @keyframes breathe {
@@ -535,8 +701,18 @@ footer a:hover {
 /* ---------- responsive ---------- */
 
 @media (max-width: 1040px) {
-  .album {
+  .album,
+  .song-page {
     grid-template-columns: 1fr;
+  }
+
+  .song-page__art {
+    grid-row: auto;
+    max-width: 28rem;
+  }
+
+  .lyrics {
+    grid-column: 1;
   }
 
   .album__stack {
@@ -588,8 +764,19 @@ footer a:hover {
     font-size: var(--text-lg);
   }
 
-  .album h2 {
+  .album h1,
+  .album h2,
+  .album-teaser h2,
+  .song-page__header h1 {
     font-size: var(--text-xl);
+  }
+
+  .album-teaser {
+    grid-template-columns: 1fr;
+  }
+
+  .album-teaser__art {
+    max-width: 16rem;
   }
 
   .album__stack {
@@ -619,6 +806,28 @@ footer a:hover {
 
   .track-card__body {
     padding: var(--space-4);
+  }
+
+  .song-page {
+    row-gap: var(--space-8);
+  }
+
+  .song-page__art {
+    max-width: none;
+  }
+
+  .song-page__persian {
+    font-size: var(--text-lg);
+  }
+
+  .poem {
+    font-size: var(--text-md);
+    line-height: 1.9;
+  }
+
+  .song-nav {
+    display: grid;
+    gap: var(--space-3);
   }
 
   .hero__meta { margin-top: var(--space-6); }
