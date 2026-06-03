@@ -261,6 +261,13 @@ main {
   background: color-mix(in srgb, var(--noshkar-sage) 24%, var(--bg));
 }
 
+.listen-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+  margin-top: var(--space-6);
+}
+
 /* ---------- home album teaser ---------- */
 
 .album-teaser {
