@@ -333,18 +333,6 @@ main {
   font-size: var(--text-md);
 }
 
-/* only two singles — keep the cards from stretching across three columns */
-.singles .track-grid {
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  max-width: 44rem;
-}
-
-@media (max-width: 640px) {
-  .singles .track-grid {
-    grid-template-columns: 1fr;
-  }
-}
-
 /* ---------- album ---------- */
 
 .album {

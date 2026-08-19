@@ -9,13 +9,25 @@ Deployed via **GitHub Pages** to [noshkar.com](https://noshkar.com).
 ## Structure
 
 ```
-├── index.html           # single-page landing
+├── index.html           # landing page (hero, album teaser, singles grid)
+├── nimeh-khab/          # album page + per-song lyric pages
+├── moohat/              # single · نشخوار 013
+├── roshan-bemoon/       # single · نشخوار 014
+├── baghlavayi/          # single · نشخوار 015
+├── laate-kooche-khalvat/ # single · نشخوار 016
+├── nakoneh-pir-beshim/  # single · نشخوار 017
+├── starlight/           # single · نشخوار 018
 ├── styles/main.css      # brand tokens + layout
 ├── assets/noshkar.png   # primary ouroboros mark (also used for favicon / OG)
+├── assets/singles/      # single cover art (480 / 1200 jpg)
+├── assets/nimeh-khab/   # album cover art
 ├── CNAME                # tells GitHub Pages the custom domain
 ├── .nojekyll            # disables Jekyll processing (serves files as-is)
 └── LICENSE              # MIT (code); brand marks reserved
 ```
+
+Each single page is self-contained static HTML: cover art, catalog number,
+Persian + Latin title, SoundCloud/YouTube links, and the full lyric in RTL.
 
 The brand system, guidelines, and design tokens live in a separate private repo: `noshkhar` (project deck). This repo holds only the public-facing landing implementation.
 
